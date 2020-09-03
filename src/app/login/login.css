@@ -1,0 +1,10 @@
+.login-main {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.login-form {
+    width: 300px;
+}

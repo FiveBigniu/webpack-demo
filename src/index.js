@@ -1,22 +1,20 @@
-import _ from 'lodash';
-function component() {
-    var element = document.createElement('div');
-    var button = document.createElement('button');
-    var br = document.createElement('br');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './resource/style/index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+import configureStore from './store/index'
+import { Provider } from 'react-redux'
 
-    button.innerHTML = 'Click me and look at the console!';
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.appendChild(br);
-    element.appendChild(button);
+const store = configureStore();
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+     document.getElementById("root")
+);
 
-    // Note that because a network request is involved, some indication
-    // of loading would need to be shown in a production-level site/app.
-    button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
-        var print = module.default;
-
-        print();
-    });
-
-    return element;
-}
-document.body.appendChild(component());
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
